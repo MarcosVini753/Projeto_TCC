@@ -1,0 +1,25 @@
+# Artefatos de compilacao LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.loq
+*.log
+*.lot
+*.toc
+*.out
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+
+# PDFs gerados automaticamente a partir de figuras EPS
+*-eps-converted-to.pdf
+
+# Editor / sistema
+.vscode/
+.idea/
+*~
+.DS_Store
