@@ -1,0 +1,454 @@
+%%=================================================================
+%% UFAC-modelo-TCC.tex (UTF-8 format), v1.0
+%%
+%%
+%% Adaptação do Modelo de Trabalho de Conclusão de Curso (TCC) do
+%% curso de Bacharelado em Sistemas de Informação da Universidade
+%% Federal do Acre em LaTeX utilizando o pacote abnTeX2
+%% (http://abnTeX2.googlecode.com).
+%%
+%% Precisa do arquivo abntex2-UFAC.sty e abntex2-alf.bst e
+%% utilizando o compilador pdfLaTeX.
+%%
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License (LPPL), either
+%% version 1.3 of this license or (at your option) any later
+%% version.
+%% The latest version of this license is in
+%% http://www.latex-project.org/lppl.txt and version 1.3 or later
+%% is part of all distributions of LaTeX version 2005/12/01 or
+%% later.
+%%
+%% Further information about abnTeX2 are available on
+%% https://www.abntex.net.br/
+%%
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The Creator and Current Maintainer of this work:
+%% Manoel Limeira <juniorlimeiras@gmail.com>.
+%%
+%% Others contributors of this work:
+%% Christopher Saar <cristophersaar@gmail.com>, Victor Alexandre<victoralexandre922@gmail.com>, Clécio Elias<https://github.com/Cleps>.
+%%
+%%
+%% Última versão janeiro/2024
+%%=================================================================
+
+% MODIFIED: Adicionada opção chapter=TITLE para que os títulos dos capítulos, elementos pré-textuais e pós-textuais sejam escritos em maiúsculas
+\documentclass[
+    % -- opções da classe memoir --
+    12pt,				       % Tamanho da fonte
+    openright,			       % Capítulos começam em pág. ímpar (insere página vazia caso preciso)
+    oneside,			       % Impressão apenas no anverso. Oposto a opção "twoside"
+    a4paper,			       % Tamanho do papel
+    % -- opções do pacote abntex2 --
+    chapter=TITLE,             % Títulos de capítulos, de elementos pré-textuais e pós-textuais em maiúsculas
+    sumario=tradicional,       % Sumário padrão memoir. Oposto a opção "abnt-6027-2012"
+    % -- opções do pacote babel --
+    english,			        % Idioma adicional para hifenização
+    brazil, 				    % Idioma principal do documento
+ ]{abntex2}
+
+
+% ADDED: Importação do arquivo abntex2-alf.bst para que o sistema de citação seja (Autor, data) e dos pacotes datetime, xcolor, pgfplots, pgfplotstable e microtype para adicionar funcionalidades de arranjo visual do texto, plotagem de dados, estilização do texto, acesso de datas e horários
+%% CONFIGURAÇÕES DE PACOTES
+
+% Pacotes básicos
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Seleção de códigos de fonte de saída
+\usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção
+\usepackage{graphicx}			% Inclusão de gráficos e figuras
+\usepackage{booktabs}           % \toprule, \midrule e \bottomrule para tabelas
+\usepackage{datetime}           % Acesso de datas e horários na compilação
+\usepackage{pgfgantt} % para usar o gráfico de gant
+
+% MODIFIED: Adicionada opção abnt-etal-text=it para que "et al." seja escrito em itálico
+% Sistema (Autor, data) com títulos das referências em negrito e termo latino "et al." escrito em itálico
+\usepackage[alf,abnt-emphasize=bf, abnt-etal-text=it]{abntex2cite}
+\bibliographystyle{abntex2-alf.bst}
+% FUTURE-TODO: Modificar comando \cite para usar sistema (Autor, data) e não (AUTOR, data) sem precisar do arquivo .bst - apagar arquivo .bst e comando acima quando finalizado
+
+% Títulos em fonte Times
+\usepackage{mathptmx}
+\renewcommand{\ABNTEXchapterfont}{\rmfamily\bfseries}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes}
+% Leitura de figuras .eps, compilação para PDF
+\usepackage[outdir=./]{epstopdf}
+\usepackage{epsfig}
+
+% \usepackage{svg}                % Leitura de figuras .svg na ferramenta OVERLEAF
+
+\usepackage{abntex2-UFAC}       % Personalização de ESTILO para a Universidade Federal do Acre
+
+% Pacotes adicionais
+
+% Plotagem de dados
+\usepackage{pgfplots, pgfplotstable} % mais detalhes veja https://pt.overleaf.com/learn/latex/Pgfplots_package
+\pgfplotsset{compat=1.15} % resolve o problema do pacote pgfplots em múltiplas ferramentas de compilação
+
+\usepackage{xcolor}             % Controle das cores
+
+\usepackage{microtype} 			% Para aprimoramento do arranjo visual do texto na ferramenta OVERLEAF
+
+\usepackage{amsmath}            % Pacote para controle de equações matemáticas
+\usepackage{float}
+%\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage{pgf-pie}
+% FUTURE-TODO: Modificar comandos relacionados as expressões latinas para serem escritas em itálico
+
+% MODIFIED: Termos latinos para serem escritos em itálico
+\renewcommand{\apudname}{\textit{apud}}
+\renewcommand{\passimname}{\textit{passim}}
+\renewcommand{\Idemname}{\textit{Id.}}
+\renewcommand{\Ibidemname}{\textit{Ibid.}}
+\renewcommand{\opcitname}{\textit{op.\ cit.}}
+\renewcommand{\loccitname}{\textit{loc.\ cit.}}
+\renewcommand{\cfcitename}{\textit{Cf.}}
+\renewcommand{\etseqname}{\textit{et seq.}}
+% ---
+
+% MODIFIED: Textos para serem mais diversificados e datas para serem escritas de forma automática
+%% Informações de dados para CAPA e FOLHA DE ROSTO
+\titulo{}
+
+\autor{}
+
+\local{Rio Branco}
+
+\data{\the\year} % Automatiza a inserção do ano atual, para modificação por um ano específico troque "\the\year" pelo ano desejado
+
+\orientador{Catarina de Souza Costa} % Redefinido no abntex2-UFAC.sty para aceitar Instituição (default = Curso de Bacharelado em Sistemas de Informação - Universidade Federal do Acre)
+
+
+
+\instituicao{Universidade Federal do Acre}
+
+% Campus ou Centro (opcional)
+\campus{Centro de Ciências Exatas e Tecnológicas} % Pacote abntex2-UFAC
+
+\curso{Curso de Bacharelado em Sistemas de Informação} % Pacote abntex2-UFAC
+
+
+
+\databanca{\today} % Automatiza a inserção da data atual, para modificação por uma data específica troque "\today" pela data desejada por extenso
+
+% REMOVED: Comando \preambulo por ter sido inutilizado no abntex2-UFAC.sty
+% O preambulo deve conter o tipo do trabalho (tese, dissertação, trabalho de conclusão de curso e outros); objetivo (aprovação em disciplina, grau pretendido e outros); nome da instituição a que é submetido e a área de concentração
+% \preambulo{Projeto de monografia apresentado como exigência parcial para obtenção do grau de bacharel em Sistemas de Informação da Universidade Federal do Acre.}
+% ---
+
+%% Configurações de aparência do PDF final
+
+% informações para o arquivo pdf de saída
+\makeatletter
+
+% MODIFIED: Cores de links do documento
+\hypersetup{
+    % metadados
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={\imprimirpreambulo},
+    pdfcreator={LaTeX with abnTeX2},
+    %%% IMPORTANTE: ALTERAR "colorlinks=false" PARA "colorlinks=true" ANTES DE IMPRIMIR A VERSÃO FINAL DO DOCUMENTO
+    colorlinks=false,           % false: links em frame; true: links coloridos
+    linkcolor=black,            % cor dos links no documento
+    citecolor=black,            % cor dos links para a bibliografia
+    filecolor=black,            % cor dos links para arquivos
+    urlcolor=black,             % cor dos links para sites
+    bookmarksdepth=4,           % profundidade do sumário do PDF
+}
+
+\makeatother
+% ---
+
+\begin{document}
+% Retira espaço extra obsoleto entre as frases
+\frenchspacing
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+\pretextual
+
+
+%% Capa
+\imprimircapa
+% ---
+
+%% Folha de rosto
+\imprimirfolhaderosto
+% ---
+
+
+    
+ %%Lista de ilustrações
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+
+
+% % ADDED: Comando para imprimir lista de quadros
+%Lista de quadros
+\pdfbookmark[0]{\listofquadrosname}{loq}
+\listofquadros*
+\cleardoublepage
+% % ---
+
+% %% Lista de tabelas
+%\pdfbookmark[0]{\listtablename}{lot}
+%\listoftables*
+%\cleardoublepage
+% % ---
+
+% % MODIFIED: Texto
+% %% Lista de siglas e abreviaturas (opcional)
+% % sintaxe: \item [sigla] Descrição da sigla
+% \begin{siglas}
+% 	\item[ABNT] Associação Brasileira de Normas Técnicas
+% 	\item[UFAC] Universidade Federal do Acre
+% \end{siglas}
+% %% ---
+
+% % MODIFIED: Exemplos de símbolos
+% %% Lista de símbolos (opcional)
+% % sintaxe: \item [simbolo] Descrição do símbolo
+% \begin{simbolos}
+%     \item[$\infty$] Infinito
+%     \item[$\Gamma$] Letra grega Gama
+%     \item[$\Lambda$] Lambda
+%     \item[$\zeta$] Letra grega minúscula zeta
+%     \item[$\in$] Pertence
+% \end{simbolos}
+% %% ---
+
+%% Sumário
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+%% Inicializado contadores
+\newcounter{equationCont} % Contador de equações
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+
+% MODIFIED: Adição de quebras de linha para início de parágrafos corretamente, troca de links quebrados, adição ou ajuste de textos de exemplo, posição da legenda e adição de fonte nas figuras e tabelas nos elementos textuais
+
+% ADDED: Comando \pagestyle{simple} para remoção do cabeçalho no modelo Capítulo <N>. <Nome do Capítulo>
+\pagestyle{simple}
+
+% Modifique a estrutura dos capítulos e seções de acordo com a necessidade do seu trabalho
+
+%% Introdução
+\chapter{APRESENTAÇÃO}\label{sec:introducao}
+
+
+
+
+% problema da pesquisaaaa AA%
+\chapter{PROBLEMA DA PESQUISA}\label{sec:problema}
+
+
+\chapter{OBJETIVOS DA PESQUISA}\label{sec:objetivos}
+Nesta seção estão estabelecidos os objetivos desta pesquisa, tanto de forma geral quanto de forma específica.
+
+\section{OBJETIVO GERAL}\label{sec:TrabRel}
+
+
+
+
+\section{OBJETIVOS ESPECÍFICOS}\label{sec:TrabRel}
+
+\begin{enumerate}
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+\end{enumerate}
+
+
+
+
+
+
+
+%% Capítulo de Resultados
+\chapter{JUSTIFICATIVA DA PESQUISA}\label{sec:justificativa}
+
+
+
+\chapter{FUNDAMENTAÇÃO TEÓRICA}\label{sec:fundamentacao}
+
+Nesta seção serão abordados alguns conceitos fundamentais para a realização deste trabalho, tais como: 
+
+
+
+\section{Assunto 1}
+
+
+
+
+
+\section{Assunto 2}
+
+
+
+\section{Asssunto 3}
+
+
+
+
+
+
+\section{Trabalhos Relacionados}\label{sec:TrabRel}
+
+
+
+\chapter{PROCEDIMENTOS METODOLÓGICOS}
+
+
+
+\chapter{ESBOÇO DOS CAPÍTULOS E SEÇÕES}\label{sec:cronograma}
+
+
+\hspace{0em} 1. INTRODUÇÃO
+
+\hspace{2em} 1.1. Problema
+
+\hspace{2em} 1.2. Objetivos
+
+\hspace{4em} 1.2.1. Geral
+
+\hspace{4em} 1.2.2. Específicos
+
+\hspace{2em} 1.3. Justificativa
+
+\hspace{2em} 1.4. Metodologia
+
+\hspace{2em} 1.5. Organização do Trabalho
+
+\hspace{0em} 2. FUNDAMENTAÇÃO TEÓRICA
+
+\hspace{2em} 2.1. 
+
+\hspace{2em} 2.2. 
+
+\hspace{2em} 2.3. 
+
+\hspace{2em} 2.4. 
+
+\hspace{0em} 3. 
+
+\hspace{2em} 3.1. 
+
+\hspace{2em} 3.2. 
+
+\hspace{4em} 3.2.1 
+
+\hspace{4em} 3.2.2 
+
+\hspace{4em} 3.2.3 
+
+\hspace{0em} 4. RESULTADOS
+
+\hspace{0em} 5. CONSIDERAÇÕES FINAIS
+
+\hspace{2em} 5.1. Contribuições
+
+\hspace{2em} 5.1 Limitações do Estudo
+
+\hspace{2em} 5.3 Trabalhos Futuros
+
+\hspace{0em} REFERÊNCIAS
+
+
+\chapter{CRONOGRAMA}\label{sec:cronograma}
+
+O processo de escrita desta monografia seguirá o cronograma explicitado no Quadro 1.
+
+\begin{quadro}[!ht]
+    \centering
+    \textbf{\caption{Cronograma de execução da pesquisa.}}
+    \label{qua: cronograma}
+    
+    \begin{tabular}{|p{2.2cm}|l|p{1.2cm}|p{7cm}|} \hline
+        % Títulos
+        \textbf{Mês} & \textbf{Data} & \textbf{Dias} & \textbf{Atividade} \\ \hline
+        % Linhas do cronograma
+        Novembro & 03-11-2025 até 17-11-2025 & 15 & Escrita do \textbf{Capítulo 1 - Introdução}. \\ \hline
+        Novembro & 18-11-2025 até 30-11-2025 & 13 & Início da escrita do \textbf{Capítulo 2 - Fundamentação Teórica}. \\ \hline
+        Dezembro & 01-12-2025 até 15-12-2025 & 15 & Conclusão da escrita do \textbf{Capítulo 2 - Fundamentação Teórica}. \\ \hline
+        Dezembro & 16-12-2025 até 23-12-2025 & 8 & \textbf{Etapa 1 e 2 (Planejamento e Identificação):} Início da busca/seleção de estudos e redação do \textbf{Capítulo 3 - Metodologia}. \\ \hline
+        Janeiro & 03-01-2026 até 12-01-2026 & 10 & Conclusão da \textbf{Etapa 1 e 2} e da redação do \textbf{Capítulo 3}. \\ \hline
+        Janeiro & 13-01-2026 até 31-01-2026 & 19 & \textbf{Etapa 3 e 4 (Extração e Visualização):} Análise dos dados e início da redação do \textbf{Capítulo 4 - Resultados}. \\ \hline
+        Fevereiro & 01-02-2026 até 06-02-2026 & 6 & Conclusão da redação do \textbf{Capítulo 4 - Resultados}. \\ \hline
+        Fevereiro & 07-02-2026 até 15-02-2026 & 9 & \textbf{Etapa 5 (Relatório):} Redação do \textbf{Capítulo 5 - Considerações Finais} e entrega da versão completa para a orientadora. \\ \hline
+        Fevereiro & 16-02-2026 até 28-02-2026 & 13 & Período de revisão e aplicação dos ajustes finais. \\ \hline
+        Março & A definir em 03/2026 & - & Preparação da apresentação e \textbf{Defesa do Trabalho de Conclusão de Curso}. \\ \hline
+    \end{tabular}
+    
+    \fonte{Elaboração própria.}
+\end{quadro}
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+
+%% Referências bibliográficas
+\bibliography{referencias.bib}\thispagestyle{empty}
+%% ---
+
+% Caso seja necessário glossário em seu documento, fazer a mão ou consulte o manual do pacote abnTeX2 para orientações sobre glossários prontos.
+
+% FUTURE-TODO: implementar modelo simples de glossário
+%% Glossário (opcional)
+% \begin{glossario}
+%     \item[LaTeX] Ferramenta de computador para autoria de documentos criada por D. E. Knuth
+%     \item[abnTeX2] Suíte para LaTeX que atende os requisitos das normas da ABNT para elaboração de documentos técnicos e científicos brasileiros
+% \end{glossario}
+%% ---
+
+% Caso sejam necessários apêndices ou anexos em seu documento use os ambientes abaixo
+
+% %% Apêndices
+% \begin{apendicesenv} \thispagestyle{empty}
+%     \partapendices % Imprime uma página indicando o início dos apêndices
+
+%     \chapter{Primeiro Apêndice} \thispagestyle{empty}
+%     % inserir seu apêndice abaixo
+
+%     \chapter{Segundo Apêndice} \thispagestyle{empty}
+%     % inserir seu apêndice abaixo
+% \end{apendicesenv}
+% %% ---
+
+% %% Anexos
+% \begin{anexosenv}
+%     \partanexos % Imprime uma página indicando o início dos anexos
+
+%     \chapter{Primeiro Anexo} \thispagestyle{empty}
+%     % inserir seu anexo abaixo
+
+%     \chapter{Segundo Anexo} \thispagestyle{empty}
+%     % inserir seu anexo abaixo
+% \end{anexosenv}
+% %% ---
+
+
+\end{document}
