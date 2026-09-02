@@ -107,8 +107,8 @@
 \renewcommand{\passimname}{\textit{passim}}
 \renewcommand{\Idemname}{\textit{Id.}}
 \renewcommand{\Ibidemname}{\textit{Ibid.}}
-\renewcommand{\opcitname}{\textit{op.\ cit.}}
-\renewcommand{\loccitname}{\textit{loc.\ cit.}}
+\renewcommand{\opcitename}{\textit{op.\ cit.}}
+\renewcommand{\loccitename}{\textit{loc.\ cit.}}
 \renewcommand{\cfcitename}{\textit{Cf.}}
 \renewcommand{\etseqname}{\textit{et seq.}}
 % ---
@@ -266,17 +266,17 @@ Nesta seção estão estabelecidos os objetivos desta pesquisa, tanto de forma g
 
 \section{OBJETIVO GERAL}\label{sec:TrabRel}
 
-
-
+Construir e avaliar um benchmark público de issues em português brasileiro para classificação automática de demandas em repositórios de software, comparando abordagens clássicas de aprendizado de máquina com uma abordagem contextual baseada em BERTimbau.
 
 \section{OBJETIVOS ESPECÍFICOS}\label{sec:TrabRel}
 
 \begin{enumerate}
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
+    \item Selecionar repositórios públicos candidatos, registrando separadamente sua vinculação ao contexto brasileiro e a presença de uma quantidade relevante de issues em português brasileiro, considerando critérios mínimos de volume, atividade, disponibilidade pública e presença de rótulos úteis para classificação.
+    \item Coletar issues dos repositórios selecionados por meio da GitHub REST API, removendo pull requests, registrando metadados relevantes e organizando os scripts necessários para garantir a reprodutibilidade do processo de coleta.
+    \item Definir uma taxonomia unificada de classes para classificação de demandas a partir do mapeamento dos rótulos heterogêneos utilizados nos repositórios, contemplando categorias como defeito, melhoria e dúvida/suporte, com revisão manual de uma amostra para verificar a consistência do mapeamento realizado.
+    \item Construir e documentar um benchmark público de issues em português brasileiro, contendo critérios de inclusão e exclusão, rótulos originais e classes harmonizadas, dicionário de variáveis, estatísticas descritivas, distribuição das classes e procedimentos de anonimização ou minimização de dados sensíveis.
+    \item Implementar e avaliar classificadores de referência baseados em TF-IDF combinado com modelos clássicos de ML como Regressão Logística, Support Vector Machine e Random Forest, utilizando o título e a descrição das issues como entrada textual.
+    \item Comparar os modelos clássicos com uma abordagem baseada em BERTimbau para representação contextual de textos em português brasileiro, utilizando métricas como macro-F1, F1 por classe, weighted-F1 e matriz de confusão, complementadas por análise quantitativa e qualitativa dos erros de classificação.
 \end{enumerate}
 
 
