@@ -107,17 +107,17 @@
 \renewcommand{\passimname}{\textit{passim}}
 \renewcommand{\Idemname}{\textit{Id.}}
 \renewcommand{\Ibidemname}{\textit{Ibid.}}
-\renewcommand{\opcitename}{\textit{op.\ cit.}}
-\renewcommand{\loccitename}{\textit{loc.\ cit.}}
+\renewcommand{\opcitname}{\textit{op.\ cit.}}
+\renewcommand{\loccitname}{\textit{loc.\ cit.}}
 \renewcommand{\cfcitename}{\textit{Cf.}}
 \renewcommand{\etseqname}{\textit{et seq.}}
 % ---
 
 % MODIFIED: Textos para serem mais diversificados e datas para serem escritas de forma automática
 %% Informações de dados para CAPA e FOLHA DE ROSTO
-\titulo{}
+\titulo{Construção e Avaliação de um Benchmark Público em Português Brasileiro para Classificação Automática de Issues em Repositórios de Software}
 
-\autor{}
+\autor{Marcos Vinícius Moraes Costa}
 
 \local{Rio Branco}
 
@@ -264,19 +264,19 @@
 \chapter{OBJETIVOS DA PESQUISA}\label{sec:objetivos}
 Nesta seção estão estabelecidos os objetivos desta pesquisa, tanto de forma geral quanto de forma específica.
 
-\section{OBJETIVO GERAL}\label{sec:TrabRel}
+\section{OBJETIVO GERAL}\label{sec:ObjGeral}
 
-Construir e avaliar um benchmark público de issues em português brasileiro para classificação automática de demandas em repositórios de software, comparando abordagens clássicas de aprendizado de máquina com uma abordagem contextual baseada em BERTimbau.
+Construir e avaliar um benchmark público de issues em português brasileiro para classificação automática de demandas em repositórios de software, comparando modelos clássicos de aprendizado de máquina com uma abordagem baseada em BERTimbau.
 
-\section{OBJETIVOS ESPECÍFICOS}\label{sec:TrabRel}
+\section{OBJETIVOS ESPECÍFICOS}\label{sec:ObjEspec}
 
 \begin{enumerate}
-    \item Selecionar repositórios públicos candidatos, registrando separadamente sua vinculação ao contexto brasileiro e a presença de uma quantidade relevante de issues em português brasileiro, considerando critérios mínimos de volume, atividade, disponibilidade pública e presença de rótulos úteis para classificação.
-    \item Coletar issues dos repositórios selecionados por meio da GitHub REST API, removendo pull requests, registrando metadados relevantes e organizando os scripts necessários para garantir a reprodutibilidade do processo de coleta.
-    \item Definir uma taxonomia unificada de classes para classificação de demandas a partir do mapeamento dos rótulos heterogêneos utilizados nos repositórios, contemplando categorias como defeito, melhoria e dúvida/suporte, com revisão manual de uma amostra para verificar a consistência do mapeamento realizado.
-    \item Construir e documentar um benchmark público de issues em português brasileiro, contendo critérios de inclusão e exclusão, rótulos originais e classes harmonizadas, dicionário de variáveis, estatísticas descritivas, distribuição das classes e procedimentos de anonimização ou minimização de dados sensíveis.
-    \item Implementar e avaliar classificadores de referência baseados em TF-IDF combinado com modelos clássicos de ML como Regressão Logística, Support Vector Machine e Random Forest, utilizando o título e a descrição das issues como entrada textual.
-    \item Comparar os modelos clássicos com uma abordagem baseada em BERTimbau para representação contextual de textos em português brasileiro, utilizando métricas como macro-F1, F1 por classe, weighted-F1 e matriz de confusão, complementadas por análise quantitativa e qualitativa dos erros de classificação.
+    \item Selecionar repositórios públicos com quantidade relevante de issues em português brasileiro e rótulos adequados à classificação.
+    \item Coletar e organizar as issues dos repositórios selecionados por meio da GitHub REST API, garantindo a reprodutibilidade do processo.
+    \item Definir uma taxonomia unificada de classes a partir da harmonização dos rótulos utilizados nos diferentes repositórios.
+    \item Construir e disponibilizar um benchmark público, documentado e reprodutível de issues em português brasileiro, com rótulos originais e classes harmonizadas.
+    \item Implementar e avaliar classificadores baseados em TF-IDF combinados com Regressão Logística, SVM e Random Forest.
+    \item Comparar os modelos clássicos com uma abordagem baseada em BERTimbau, utilizando métricas de classificação e análise de erros.
 \end{enumerate}
 
 
